@@ -1,6 +1,6 @@
 ﻿using NewWebApp.Dto;
 
-namespace NewWebApp.Abstractions
+namespace NewWebApp.Repositories
 {
     public interface IProductRepository
     {

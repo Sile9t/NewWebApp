@@ -13,6 +13,10 @@ namespace NewWebApp.Data
 
         public StorageContext(DbContextOptions<StorageContext> dbContext) : base(dbContext) { }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder.UseSqlServer("Server=DESKTOP-U893DOI;Initial Catalog = Products;TrustServerCertificate=True;Trusted_Connection=True")
+                .UseLazyLoadingProxies().LogTo(Console.WriteLine);
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>(entity =>

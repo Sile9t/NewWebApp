@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using NewWebApp.Abstractions;
 using NewWebApp.Data;
+using NewWebApp.Graph.Mutation;
+using NewWebApp.Graph.Query;
 using NewWebApp.Mapper;
 using NewWebApp.Repositories;
 
@@ -8,30 +9,33 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StorageContext>(option => option.UseSqlServer(builder
     .Configuration.GetConnectionString("db")));
-builder.Services.AddSingleton<IProductRepository, ProductRepository>();
-builder.Services.AddSingleton<IProductGroupRepository, ProductGroupRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
 builder.Services.AddAutoMapper(typeof(MapperProfile));
-builder.Services.AddGraphQLServer();
+builder.Services.AddGraphQLServer().AddQueryType<Query>().AddMutationType<Mutation>();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
+
+app.MapGraphQL();
 
 app.Run();
