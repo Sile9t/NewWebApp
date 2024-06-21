@@ -5,25 +5,13 @@ namespace NewWebApp.Data
 {
     public class StorageContext : DbContext
     {
-        private readonly string _connection;
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductGroup> ProductGroups { get; set; }
         public virtual DbSet<Storage> Storages { get; set; }
 
-        public StorageContext()
-        {
-            _connection = "Server=DESKTOP-U893DOI;Initial Catalog = NewProducts;" +
-                "TrustServerCertificate = True; Trusted_Connection = True";
-        }
+        public StorageContext() { }
 
-        public StorageContext(string connection)
-        {
-            _connection = connection;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlServer(_connection).UseLazyLoadingProxies()
-                .LogTo(Console.WriteLine);
+        public StorageContext(DbContextOptions<StorageContext> dbContext) : base(dbContext) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
