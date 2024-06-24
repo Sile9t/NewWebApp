@@ -45,7 +45,7 @@ namespace NewWebApp.Repositories
 
                 var entity = _mapper.Map<StorageDto>(storage);
 
-                context.Remove(entity);
+                context.Remove(storage);
                 context.SaveChanges();
                 _cache.Remove("storages");
 
@@ -67,5 +67,6 @@ namespace NewWebApp.Repositories
                 return list;
             }
         }
+
     }
 }

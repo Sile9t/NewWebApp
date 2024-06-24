@@ -22,5 +22,6 @@ namespace NewWebApp.Graph.Mutation
 
         public StorageDto DeleteStorage([Service] IStorageRepository storageRepository, int productId)
             => storageRepository.DeleteStorage(productId);
+
     }
 }
