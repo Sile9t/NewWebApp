@@ -17,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 //    .Configuration.GetConnectionString("db")).LogTo(Console.WriteLine));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
+builder.Services.AddScoped<IStorageRepository, StorageRepository>();
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 builder.Services.AddGraphQLServer().AddQueryType<Query>().AddMutationType<Mutation>();
 builder.Services.AddMemoryCache();
