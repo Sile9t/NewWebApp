@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Identity.Client.Extensions.Msal;
 using NewWebApp.Data;
 using NewWebApp.Dto;
+using NewWebApp.Models;
 
 namespace NewWebApp.Repositories
 {
