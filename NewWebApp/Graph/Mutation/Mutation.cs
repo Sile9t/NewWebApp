@@ -16,5 +16,11 @@ namespace NewWebApp.Graph.Mutation
 
         public ProductGroupDto DeleteProductGroup([Service] IProductGroupRepository groupRepository, string name)
             => groupRepository.DeleteProductGroup(name);
+
+        public int AddStorage([Service] IStorageRepository storageRepository, StorageDto storage)
+            => storageRepository.AddStorage(storage);
+
+        public StorageDto DeleteStorage([Service] IStorageRepository storageRepository, string name)
+            => storageRepository.DeleteStorage(name);
     }
 }
