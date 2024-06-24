@@ -21,8 +21,8 @@ namespace NewWebApp.Repositories
         {
             using (var context = new StorageContext())
             {
-                if (context.Storages.Any(x => x.Name == storage.Name))
-                    throw new Exception("Storage is already exist!");
+                if (context.Storages.Any(x => x.ProductId == storage.ProductId))
+                    throw new Exception("Storage with this product is already exist!");
 
                 var entity = _mapper.Map<Storage>(storage);
 
@@ -34,11 +34,11 @@ namespace NewWebApp.Repositories
             }
         }
 
-        public StorageDto DeleteStorage(string name)
+        public StorageDto DeleteStorage(int productId)
         {
             using (var context = new StorageContext())
             {
-                var storage = context.Storages.FirstOrDefault(x => x.Name == name);
+                var storage = context.Storages.FirstOrDefault(x => x.ProductId == productId);
 
                 if (storage == null)
                     throw new Exception("Storage not found!");

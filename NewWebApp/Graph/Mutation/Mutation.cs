@@ -20,7 +20,7 @@ namespace NewWebApp.Graph.Mutation
         public int AddStorage([Service] IStorageRepository storageRepository, StorageDto storage)
             => storageRepository.AddStorage(storage);
 
-        public StorageDto DeleteStorage([Service] IStorageRepository storageRepository, string name)
-            => storageRepository.DeleteStorage(name);
+        public StorageDto DeleteStorage([Service] IStorageRepository storageRepository, int productId)
+            => storageRepository.DeleteStorage(productId);
     }
 }

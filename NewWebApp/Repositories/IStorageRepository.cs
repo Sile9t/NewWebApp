@@ -6,6 +6,6 @@ namespace NewWebApp.Repositories
     {
         int AddStorage(StorageDto storage);
         IEnumerable<StorageDto> GetStorages();
-        StorageDto DeleteStorage(string name);
+        StorageDto DeleteStorage(int productId);
     }
 }
